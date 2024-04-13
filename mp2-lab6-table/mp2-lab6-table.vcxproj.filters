@@ -13,16 +13,51 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы заголовков\Array">
+      <UniqueIdentifier>{bbf0561b-f00b-4920-a968-64619f1fb5b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Hash">
+      <UniqueIdentifier>{ea981cc8-a4c2-4039-a21b-0fca111647ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Tree">
+      <UniqueIdentifier>{0621ddec-012c-40c0-b6ab-9cef49c17233}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TTable.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="TArrayTable.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Array</Filter>
+    </ClInclude>
+    <ClInclude Include="TScanTable.h">
+      <Filter>Файлы заголовков\Array</Filter>
+    </ClInclude>
+    <ClInclude Include="TSortTable.h">
+      <Filter>Файлы заголовков\Array</Filter>
     </ClInclude>
     <ClInclude Include="THashTable.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Hash</Filter>
     </ClInclude>
+    <ClInclude Include="TListHash.h">
+      <Filter>Файлы заголовков\Hash</Filter>
+    </ClInclude>
+    <ClInclude Include="TArrayHash.h">
+      <Filter>Файлы заголовков\Hash</Filter>
+    </ClInclude>
+    <ClInclude Include="TTreeTable.h">
+      <Filter>Файлы заголовков\Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="TAVLTree.h">
+      <Filter>Файлы заголовков\Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="TRBTree.h">
+      <Filter>Файлы заголовков\Tree</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TSortTable.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
