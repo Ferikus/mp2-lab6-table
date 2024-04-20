@@ -15,14 +15,11 @@ public:
 		MaxSize = size;
 		DataCount = CurrPos = 0;
 	}
-	~TArrayTable()
-	{
-		delete[] pRecs;
-	}
+	~TArrayTable() { delete[] pRecs; }
 
 	// информационные методы
 	virtual bool isFull() const { return DataCount >= MaxSize; }
-	int getMaxSize() const { return MaxSize; }
+	int getMaxSize() const		{ return MaxSize; }
 
 	// доступ
 	virtual TKey getKey() const
@@ -35,19 +32,10 @@ public:
 		// проверить диапазон
 		return pRecs[CurrPos].val;
 	}
-	virtual void reset()
-	{
-		CurrPos = 0;
-	}
-	virtual bool isTabEnd() const
-	{
-		return CurrPos >= DataCount;
-	}
-	virtual void goNext()
-	{
-		if (!isTabEnd()) CurrPos++;
-	}
-	virtual int setCurrPos(int pos);
-	int getCurrPos() const;
+	virtual void reset()			 { CurrPos = 0; }
+	virtual bool isTabEnd() const	 { return CurrPos >= DataCount; }
+	virtual void goNext()			 { if (!isTabEnd()) CurrPos++; }
+	virtual void setCurrPos(int pos) { CurrPos = pos; };
+	virtual int getCurrPos() const	 { return CurrPos; };
 	friend TSortTable;
 };

@@ -5,9 +5,9 @@ enum TSortType { select, merge, quick };
 
 class TSortTable : public TScanTable {
 protected:
-	TRecord* Buf; // вспомогательный буфер для сортировки
+	TRecord* pBuf; // вспомогательный буфер для сортировки
 	void Sort(); // функция вызова одного из методов сортировки
-	void selectSort();
+	void SelectSort();
 	void MergeSort();
 	void QSort(int l, int r); // вспомогательная функция для быстрой сортировки
 	void QuickSort();
