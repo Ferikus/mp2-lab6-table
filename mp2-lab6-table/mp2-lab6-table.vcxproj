@@ -151,7 +151,9 @@
     <ClInclude Include="TTreeTable.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TAVLTree.cpp" />
     <ClCompile Include="TSortTable.cpp" />
+    <ClCompile Include="TTreeTable.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
