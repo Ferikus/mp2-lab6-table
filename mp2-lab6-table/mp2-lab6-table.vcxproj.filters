@@ -51,9 +51,6 @@
     <ClInclude Include="TAVLTree.h">
       <Filter>Файлы заголовков\Tree</Filter>
     </ClInclude>
-    <ClInclude Include="TRBTree.h">
-      <Filter>Файлы заголовков\Tree</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TSortTable.cpp">
@@ -63,6 +60,12 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="TAVLTree.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="TArrayTable.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

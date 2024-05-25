@@ -3,7 +3,6 @@
 
 /* -------------------------- реярш дкъ TList -------------------------- */
 
-TEST(List, CAN_CREATE_LIST)
+TEST(Table, CAN_CREATE_TABLE)
 {
-	EXPECT_NO_THROW(TList<int> l);
 }

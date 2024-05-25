@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -144,13 +144,14 @@
     <ClInclude Include="TAVLTree.h" />
     <ClInclude Include="THashTable.h" />
     <ClInclude Include="TListHash.h" />
-    <ClInclude Include="TRBTree.h" />
     <ClInclude Include="TScanTable.h" />
     <ClInclude Include="TSortTable.h" />
     <ClInclude Include="TTable.h" />
     <ClInclude Include="TTreeTable.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="TArrayTable.cpp" />
     <ClCompile Include="TAVLTree.cpp" />
     <ClCompile Include="TSortTable.cpp" />
     <ClCompile Include="TTreeTable.cpp" />

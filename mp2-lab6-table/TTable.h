@@ -66,4 +66,16 @@ public:
 		}
 		return os;
 	}
+
+	std::ostream& printTab(std::ostream& os, TTable& tab) // оепедекюрэ онд янупюмемхе б тюик
+	{
+		os << "Table printing" << std::endl;
+		for (tab.reset(); !tab.isTabEnd(); tab.goNext())
+		{
+			os << "Key: " << tab.getKey()
+				<< "Val: " << tab.getValue() << std::endl;
+		}
+		return os;
+	}
+
 };
