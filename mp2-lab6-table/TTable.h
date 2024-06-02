@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <ctime>
+#include <fstream>
 
 #define TabOK        0 // ошибок нет
 #define TabEmpty  -101 // таблица пуста
@@ -9,10 +11,10 @@
 #define TabRecDbl -104 // дублирование записи
 #define TabNoMem  -105 // нет памяти
 
-#define TabMaxSize 25
+#define TabMaxSize 10
 
 typedef int TKey;
-typedef std::string TValue;
+typedef int TValue;
 
 struct TRecord
 {
@@ -24,6 +26,9 @@ struct TRecord
 		key = _key;
 		val = _val;
 	}
+
+	bool operator== (const TRecord& rec) const { return (key == rec.key && val == rec.val); }
+	bool operator!= (const TRecord& rec) const { return !(*this == rec); }
 };
 
 class TTable
@@ -53,29 +58,9 @@ public:
 	virtual void goNext() = 0;
 
 	// доступ
-	virtual TKey getKey() const = 0;
-	virtual TValue getValue() const = 0;
+	virtual TRecord& getRec() const = 0;
 
-	friend std::ostream& operator<<(std::ostream& os, TTable& tab)
-	{
-		os << "Table printing" << std::endl;
-		for (tab.reset(); !tab.isTabEnd(); tab.goNext())
-		{
-			os << "Key: " << tab.getKey()
-				<< "Val: " << tab.getValue() << std::endl;
-		}
-		return os;
-	}
-
-	std::ostream& printTab(std::ostream& os, TTable& tab) // ПЕРЕДЕЛАТЬ ПОД СОХРАНЕНИЕ В ФАЙЛ
-	{
-		os << "Table printing" << std::endl;
-		for (tab.reset(); !tab.isTabEnd(); tab.goNext())
-		{
-			os << "Key: " << tab.getKey()
-				<< "Val: " << tab.getValue() << std::endl;
-		}
-		return os;
-	}
-
+	// заполнение и печать
+	virtual void fillTab(int size) = 0;
+	virtual void printTab(std::string filename) = 0;
 };

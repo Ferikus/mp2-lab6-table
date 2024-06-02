@@ -30,9 +30,6 @@
     <ClInclude Include="TArrayTable.h">
       <Filter>Файлы заголовков\Array</Filter>
     </ClInclude>
-    <ClInclude Include="TScanTable.h">
-      <Filter>Файлы заголовков\Array</Filter>
-    </ClInclude>
     <ClInclude Include="TSortTable.h">
       <Filter>Файлы заголовков\Array</Filter>
     </ClInclude>
@@ -51,21 +48,15 @@
     <ClInclude Include="TAVLTree.h">
       <Filter>Файлы заголовков\Tree</Filter>
     </ClInclude>
+    <ClInclude Include="TScanTable.h">
+      <Filter>Файлы заголовков\Array</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TSortTable.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="TTreeTable.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="TAVLTree.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="TArrayTable.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

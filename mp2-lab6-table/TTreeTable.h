@@ -44,7 +44,7 @@ protected:
 		}
 	}
 public:
-	TTreeTable() : TTable() { CurrPos = 0; pRoot = pCurr = NULL; }
+	//TTreeTable() : TTable() { CurrPos = 0; pRoot = pCurr = NULL; }
 	//конструктор: обнулить все поля
 	//проверка на полноту: попробовать создать звено (проверка на заполненность памяти)
 	~TTreeTable() { deleteTreeTab(pRoot); }

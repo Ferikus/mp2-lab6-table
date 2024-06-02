@@ -20,14 +20,14 @@ int TAVLTreeTable::insBal(TTreeNode*& pNode, TRecord rec)
 	return res;
 }
 
-int TAVLTreeTable::LeftBalance(TTreeNode*& pNode)
-{
-
-}
-
-int TAVLTreeTable::RightBalance(TTreeNode*& pNode)
-{
-}
+//int TAVLTreeTable::LeftBalance(TTreeNode*& pNode)
+//{
+//
+//}
+//
+//int TAVLTreeTable::RightBalance(TTreeNode*& pNode)
+//{
+//}
 
 int TAVLTreeTable::insRec(TRecord rec)
 {

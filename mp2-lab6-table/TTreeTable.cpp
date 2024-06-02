@@ -38,28 +38,28 @@ int TTreeTable::insRec(TRecord rec)
 	return TabOK;
 }
 
-int TTreeTable::delRec(TKey key)
-{
-	bool res = findRec(key);
-	if (res == false) return TabNoRec;
-	else {
-		TTreeNode* pDel;
-		if (pPr == NULL) pRoot = pCurr->pLeft; // ??? верный ли порядок команд, проверить на примере
-		else {
-			if (pCurr->pRight == NULL) {
-				pDel = pCurr;
-				if (pPr->rec.key > pCurr->rec.key) // левая ветка
-					pPr->pLeft = pCurr->pLeft;
-				else pPr->pRight == pCurr->pRight; // правая ветка
-			}
-			else if (pCurr->pLeft == NULL) {
-				pDel = pCurr;
-				if (pPr->rec.key > pCurr->rec.key) // левая ветка
-					pPr->pRight = pCurr->pRight;
-				else pPr->pLeft == pCurr->pLeft; // правая ветка
-			}
-		}
-		delete pDel;
-	}
-	return TabOK;
-}
+//int TTreeTable::delRec(TKey key)
+//{
+//	bool res = findRec(key);
+//	if (res == false) return TabNoRec;
+//	else {
+//		TTreeNode* pDel;
+//		if (pPr == NULL) pRoot = pCurr->pLeft; // ??? верный ли порядок команд, проверить на примере
+//		else {
+//			if (pCurr->pRight == NULL) {
+//				pDel = pCurr;
+//				if (pPr->rec.key > pCurr->rec.key) // левая ветка
+//					pPr->pLeft = pCurr->pLeft;
+//				else pPr->pRight == pCurr->pRight; // правая ветка
+//			}
+//			else if (pCurr->pLeft == NULL) {
+//				pDel = pCurr;
+//				if (pPr->rec.key > pCurr->rec.key) // левая ветка
+//					pPr->pRight = pCurr->pRight;
+//				else pPr->pLeft == pCurr->pLeft; // правая ветка
+//			}
+//		}
+//		delete pDel;
+//	}
+//	return TabOK;
+//}
