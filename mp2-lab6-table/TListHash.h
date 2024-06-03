@@ -114,8 +114,19 @@ void TListHash::fillTab(int size, int keyrange)
 	srand(time(0));
 	TRecord rec;
 	DataCount = size; 
+	int keyrand, valrand;
+
+	std::vector<bool> usedKeys(keyrange, false);
+
 	for (int i = 0; i < size; i++) {
-		rec = TRecord(rand() % keyrange, rand() % (-1999) - 1000);
+		do {
+			keyrand = rand() % keyrange;
+		} while (usedKeys[keyrand]);
+
+		usedKeys[keyrand] = true;
+
+		valrand = rand() % (-1999) - 1000;
+		rec = TRecord(keyrand, valrand);
 		insRec(rec);
 	}
 }

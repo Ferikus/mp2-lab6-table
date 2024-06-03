@@ -13,7 +13,7 @@ TEST(ArrayHash, FULL_TABLE_IS_FULL)
 {
 	TArrayHash tab(3);
 	EXPECT_FALSE(tab.isFull());
-	tab.fillTab(3);
+	tab.fillTab(3, 100);
 	EXPECT_TRUE(tab.isFull());
 }
 
@@ -41,7 +41,7 @@ TEST(ArrayHash, CAN_DEL_REC)
 TEST(ArrayHash, CHECK_PRINTED_TAB)
 {
 	TArrayHash tab;
-	tab.fillTab(10);
+	tab.fillTab(10, 100);
 	EXPECT_NO_THROW(tab.printTab("arrayhashtable"));
 }
 
@@ -76,6 +76,6 @@ TEST(ListHash, CAN_DEL_REC)
 TEST(ListHash, CHECK_PRINTED_TAB)
 {
 	TListHash tab(5);
-	tab.fillTab(10);
+	tab.fillTab(50, 100);
 	EXPECT_NO_THROW(tab.printTab("listhashtable"));
 }

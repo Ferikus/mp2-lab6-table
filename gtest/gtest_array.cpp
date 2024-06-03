@@ -25,7 +25,7 @@ TEST(ScanTable, FULL_TABLE_IS_FULL)
 {
 	TScanTable tab(3);
 	EXPECT_FALSE(tab.isFull());
-	tab.fillTab(3);
+	tab.fillTab(3, 100);
 	EXPECT_TRUE(tab.isFull());
 }
 
@@ -63,7 +63,7 @@ TEST(ScanTable, CAN_DEL_REC)
 TEST(ScanTable, CHECK_PRINTED_TAB)
 {
 	TScanTable tab;
-	tab.fillTab(3);
+	tab.fillTab(3, 100);
 	EXPECT_NO_THROW(tab.printTab("scantable"));
 }
 
@@ -77,7 +77,7 @@ TEST(SortTable, CAN_CREATE_TABLE)
 TEST(SortTable, QUICK_SORT_IS_CORRECT)
 {
 	TSortTable tab(10, quick);
-	tab.fillTab(3);
+	tab.fillTab(3, 100);
 	TRecord prevrec;
 	tab.reset();
 	prevrec = tab.getRec();
@@ -89,7 +89,7 @@ TEST(SortTable, QUICK_SORT_IS_CORRECT)
 TEST(SortTable, SELECT_SORT_IS_CORRECT)
 {
 	TSortTable tab(10, select);
-	tab.fillTab(3);
+	tab.fillTab(3, 100);
 	TRecord prevrec;
 	tab.reset();
 	prevrec = tab.getRec();
@@ -101,7 +101,7 @@ TEST(SortTable, SELECT_SORT_IS_CORRECT)
 TEST(SortTable, MERGE_SORT_IS_CORRECT)
 {
 	TSortTable tab(10, merge);
-	tab.fillTab(3);
+	tab.fillTab(3, 100);
 	TRecord prevrec;
 	tab.reset();
 	prevrec = tab.getRec();
@@ -148,14 +148,14 @@ TEST(SortTable, CAN_DEL_REC)
 TEST(SortTable, CHECK_PRINTED_TAB)
 {
 	TSortTable tab_quick(10, quick);
-	tab_quick.fillTab(3);
+	tab_quick.fillTab(3, 100);
 	EXPECT_NO_THROW(tab_quick.printTab("sorttable_quick"));
 
 	TSortTable tab_select(10, select);
-	tab_select.fillTab(3);
+	tab_select.fillTab(3, 100);
 	EXPECT_NO_THROW(tab_select.printTab("sorttable_select"));
 
 	TSortTable tab_merge(10, merge);
-	tab_merge.fillTab(3);
+	tab_merge.fillTab(3, 100);
 	EXPECT_NO_THROW(tab_merge.printTab("sorttable_merge"));
 }

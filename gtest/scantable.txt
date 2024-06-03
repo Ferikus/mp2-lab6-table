@@ -1,4 +1,4 @@
 Table printing
-Key: 44 Val: -961
-Key: 16 Val: -374
-Key: 13 Val: 368
+Key: 63 Val: -752
+Key: 40 Val: -657
+Key: 12 Val: 622

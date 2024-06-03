@@ -30,7 +30,7 @@ TEST(TreeTable, CAN_DEL_REC)
 TEST(TreeTable, CHECK_PRINTED_TAB)
 {
 	TTreeTable tab;
-	tab.fillTab(20);
+	tab.fillTab(200, 1000);
 	EXPECT_NO_THROW(tab.printTab("treetable"));
 }
 
@@ -64,6 +64,6 @@ TEST(AVLTree, CAN_DEL_REC)
 TEST(AVLTree, CHECK_PRINTED_TAB)
 {
 	TAVLTree tab;
-	tab.fillTab(10);
+	tab.fillTab(200, 1000);
 	EXPECT_NO_THROW(tab.printTab("avltreetable"));
 }
