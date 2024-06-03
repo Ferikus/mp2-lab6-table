@@ -60,7 +60,7 @@ public:
 	// доступ
 	virtual TRecord& getRec() const = 0;
 
-	// заполнение и печать
+	// служебные методы
 	virtual void fillTab(int size) = 0;
 	virtual void printTab(std::string filename) = 0;
 };
