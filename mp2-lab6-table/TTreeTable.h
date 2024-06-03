@@ -59,8 +59,9 @@ public:
 	virtual TRecord& getRec() const final;
 
 	// служебные методы
-	virtual void fillTab(int size);
+	virtual void fillTab(int size, int keyrange);
 	virtual void printTab(std::string filename) final;
+	virtual void clrTab() final { deleteTreeTab(pRoot); }
 };
 
 
@@ -206,21 +207,6 @@ bool TTreeTable::isTabEnd() const
 	return Deep == DataCount;
 }
 
-//void TTreeTable::printTreeTab(std::ostream& os, TTreeNode* pNode)
-//{
-//	int level = 0;
-//	if (pNode != NULL)
-//	{
-//		for (int i = 0; i < level; i++)
-//			os << " ";
-//		os << pNode->rec.key << std::endl;
-//		level++;
-//		printTreeTab(os, pNode->pRight);
-//		printTreeTab(os, pNode->pLeft);
-//		level--;
-//	}
-//}
-
 void TTreeTable::printTreeTab(std::ofstream& file, TTreeNode* pNode, int level)
 {
 	if (pNode != NULL)
@@ -255,14 +241,14 @@ TRecord& TTreeTable::getRec() const
 	return pCurr->rec;
 }
 
-void TTreeTable::fillTab(int size)
+void TTreeTable::fillTab(int size, int keyrange)
 {
 	if (size <= 0) throw "Invalid value for the table size";
 	srand(time(0));
 	TRecord rec;
 	DataCount = size;
 	for (int i = 0; i < size; i++) {
-		rec = TRecord(rand() % 100, rand() % (-1999) - 1000);
+		rec = TRecord(rand() % keyrange, rand() % (-1999) - 1000);
 		insRec(rec);
 	}
 }

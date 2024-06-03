@@ -31,8 +31,9 @@ public:
 	virtual int delRec(TKey key);
 
 	// заполнение и печать
-	virtual void fillTab(int size);
+	virtual void fillTab(int size, int keyrange);
 	virtual void printTab(std::string filename);
+	virtual void clrTab();
 };
 
 
@@ -123,12 +124,12 @@ int TArrayHash::delRec(TKey key)
 	return TabOK;
 }
 
-void TArrayHash::fillTab(int size)
+void TArrayHash::fillTab(int size, int keyrange)
 {
 	if (size <= 0 || size > MaxSize) throw "Invalid value for the table size";
 	srand(time(0));
 	for (int i = 0; i < size; i++) {
-		insRec(TRecord(rand() % 100, rand() % (-1999) - 1000));
+		insRec(TRecord(rand() % keyrange, rand() % (-1999) - 1000));
 	}
 	DataCount = size;
 }
@@ -143,4 +144,12 @@ void TArrayHash::printTab(std::string filename)
 			<< " Val: " << getRec().val << std::endl;
 	}
 	file.close();
+}
+
+void TArrayHash::clrTab()
+{
+	for (reset(); !isTabEnd(); goNext())
+	{
+		delRec(getRec().key);
+	}
 }

@@ -21,7 +21,7 @@ public:
 	virtual int delRec(TKey key);
 
 	// служебные методы
-	void fillTab(int size);
+	void fillTab(int size, int keyrange);
 };
 
 
@@ -257,7 +257,7 @@ int TAVLTree::insRec(TRecord rec)
 //	}
 //}
 
-void TAVLTree::fillTab(int size)
+void TAVLTree::fillTab(int size, int keyrange)
 {
 	if (size <= 0) throw "Invalid value for the table size";
 	srand(time(0));
@@ -266,11 +266,11 @@ void TAVLTree::fillTab(int size)
 	DataCount = size;
 
 	// Массив для хранения уже сгенерированных ключей
-	std::vector<bool> usedKeys(100, false);
+	std::vector<bool> usedKeys(keyrange, false);
 
 	for (int i = 0; i < size; i++) {
 		do {
-			keyrand = rand() % 100;
+			keyrand = rand() % keyrange;
 		} while (usedKeys[keyrand]); // Генерируем новый ключ, пока он не будет уникальным
 
 		usedKeys[keyrand] = true; // Отмечаем ключ как использованный

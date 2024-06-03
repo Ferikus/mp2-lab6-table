@@ -11,7 +11,7 @@
 #define TabRecDbl -104 // дублирование записи
 #define TabNoMem  -105 // нет памяти
 
-#define TabMaxSize 10
+#define TabMaxSize 5000
 
 typedef int TKey;
 typedef int TValue;
@@ -42,7 +42,7 @@ public:
 
 	// информационные методы
 	int getDataCount()   { return DataCount; }
-	int getEff()         { return eff; }
+	int getEff()		 { return eff; }
 	void clrEff()        { eff = 0; }
 	bool isEmpty() const { return DataCount == 0; }
 	virtual bool isFull() const = 0;
@@ -61,6 +61,7 @@ public:
 	virtual TRecord& getRec() const = 0;
 
 	// служебные методы
-	virtual void fillTab(int size) = 0;
+	virtual void fillTab(int size, int keyrange) = 0;
 	virtual void printTab(std::string filename) = 0;
+	virtual void clrTab() = 0;
 };

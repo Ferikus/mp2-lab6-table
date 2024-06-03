@@ -24,7 +24,7 @@ public:
 	int insRec(TRecord rec);
 	int delRec(TKey key);
 
-	virtual void fillTab(int size);
+	virtual void fillTab(int size, int keyrange);
 };
 
 
@@ -138,6 +138,7 @@ bool TSortTable::findRec(TKey key)
 {
 	int l = 0, r = DataCount - 1;
 	while (l <= r) {
+		eff++;
 		int m = (l + r) / 2;
 		if (key == pRecs[m].key) {
 			CurrPos = m;
@@ -158,10 +159,12 @@ int TSortTable::insRec(TRecord rec)
 	bool res = findRec(rec.key);
 	if (res) return TabRecDbl;
 	// перепаковать - сдвинуть все элементы начиная с Curr вправо на 1
-	for (int i = DataCount; i > CurrPos; i--)
+	for (int i = DataCount; i > CurrPos; i--) {
 		pRecs[i] = pRecs[i - 1];
+		eff++;
+	}
 	pRecs[CurrPos] = rec;
-	DataCount++; eff++;
+	DataCount++;
 	return TabOK;
 }
 
@@ -170,19 +173,21 @@ int TSortTable::delRec(TKey key)
 	bool res = findRec(key);
 	if (res == false) return TabNoRec;
 	// перепаковать - сместить все элементы начиная с Curr+1 влево на 1
-	for (int i = CurrPos; i < DataCount - 1; i++)
+	for (int i = CurrPos; i < DataCount - 1; i++) {
 		pRecs[i] = pRecs[i + 1];
-	DataCount--; eff++;
+		eff++;
+	}
+	DataCount--;
 	return TabOK;
 }
 
-void TSortTable::fillTab(int size)
+void TSortTable::fillTab(int size, int keyrange)
 {
 	if (size <= 0 || size > MaxSize) throw "Invalid value for the table size";
 	srand(time(0));
 	DataCount = size;
 	for (int i = 0; i < size; i++) {
-		pRecs[i] = TRecord(rand() % 100, rand() % (-1999) - 1000);
+		pRecs[i] = TRecord(rand() % keyrange, rand() % (-1999) - 1000);
 	}
 	Sort();
 }

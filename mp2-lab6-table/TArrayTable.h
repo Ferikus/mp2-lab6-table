@@ -41,7 +41,7 @@ public:
 	virtual void goNext()			 { if (!isTabEnd()) CurrPos++; }
 
 	// заполнение и печать
-	virtual void fillTab(int size) = 0;
+	virtual void fillTab(int size, int keyrange) = 0;
 	virtual void printTab(std::string filename)
 	{
 		std::ofstream file(filename + ".txt");
@@ -52,5 +52,12 @@ public:
 				<< " Val: " << getRec().val << std::endl;
 		}
 		file.close();
+	}
+	virtual void clrTab()
+	{
+		for (reset(); !isTabEnd(); goNext())
+		{
+			delRec(getRec().key);
+		}
 	}
 };

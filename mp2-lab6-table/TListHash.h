@@ -28,8 +28,9 @@ public:
 	virtual int delRec(TKey key);
 
 	// заполнение и печать
-	virtual void fillTab(int size);
+	virtual void fillTab(int size, int keyrange);
 	virtual void printTab(std::string filename);
+	void clrTab();
 };
 
 
@@ -107,14 +108,14 @@ int TListHash::delRec(TKey key)
 	return TabOK;
 }
 
-void TListHash::fillTab(int size)
+void TListHash::fillTab(int size, int keyrange)
 {
 	if (size <= 0) throw "Invalid value for the table size";
 	srand(time(0));
 	TRecord rec;
 	DataCount = size; 
 	for (int i = 0; i < size; i++) {
-		rec = TRecord(rand() % 100, rand() % (-1999) - 1000);
+		rec = TRecord(rand() % keyrange, rand() % (-1999) - 1000);
 		insRec(rec);
 	}
 }
@@ -136,3 +137,12 @@ void TListHash::printTab(std::string filename)
 	file.close();
 }
 
+void TListHash::clrTab()
+{
+	for (reset(); !isTabEnd(); goNext())
+	{
+		for (; pCurr != pList[CurrList].end(); pCurr++) {
+			delRec(getRec().key);
+		}
+	}
+}

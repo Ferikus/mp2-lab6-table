@@ -1,0 +1,6 @@
+Table printing
+Key: 3 Val: -391
+Key: 0 Val: 968
+Key: 3 Val: -330
+Key: 0 Val: -456
+Key: 1 Val: -143

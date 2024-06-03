@@ -12,7 +12,7 @@ public:
 	virtual int insRec(TRecord rec);
 	virtual int delRec(TKey key);
 
-	virtual void fillTab(int size);
+	virtual void fillTab(int size, int keyrange);
 };
 
 
@@ -45,12 +45,12 @@ int TScanTable::delRec(TKey key)
 	return TabOK;
 }
 
-void TScanTable::fillTab(int size)
+void TScanTable::fillTab(int size, int keyrange)
 {
 	if (size <= 0 || size > MaxSize) throw "Invalid value for the table size";
 	srand(time(0));
 	DataCount = size;
 	for (int i = 0; i < size; i++) {
-		pRecs[i] = TRecord(rand() % 100, rand()%(-1999)-1000); // rand() % (end - start + 1) + start;
+		pRecs[i] = TRecord(rand() % keyrange, rand()%(-1999)-1000); // rand() % (end - start + 1) + start;
 	}
 }
