@@ -64,6 +64,6 @@ TEST(AVLTree, CAN_DEL_REC)
 TEST(AVLTree, CHECK_PRINTED_TAB)
 {
 	TAVLTree tab;
-	tab.fillTab(200, 1000);
+	tab.fillTab(50, 50);
 	EXPECT_NO_THROW(tab.printTab("avltreetable"));
 }

@@ -25,6 +25,7 @@ public:
 	int delRec(TKey key);
 
 	virtual void fillTab(int size, int keyrange);
+	virtual void clrTab();
 };
 
 
@@ -185,9 +186,28 @@ void TSortTable::fillTab(int size, int keyrange)
 {
 	if (size <= 0 || size > MaxSize) throw "Invalid value for the table size";
 	srand(time(0));
-	DataCount = size;
+	TRecord rec;
+	int keyrand, valrand;
+
+	std::vector<bool> usedKeys(keyrange, false);
+
 	for (int i = 0; i < size; i++) {
-		pRecs[i] = TRecord(rand() % keyrange, rand() % (-1999) - 1000);
+		do {
+			keyrand = rand() % keyrange;
+		} while (usedKeys[keyrand]);
+
+		usedKeys[keyrand] = true;
+
+		valrand = rand() % (-1999) - 1000;
+		rec = TRecord(keyrand, valrand);
+		insRec(rec);
 	}
-	Sort();
+}
+
+void TSortTable::clrTab()
+{
+	for (reset(); !isTabEnd(); goNext())
+	{
+		delRec(getRec().key);
+	}
 }

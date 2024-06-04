@@ -113,8 +113,8 @@ void TListHash::fillTab(int size, int keyrange)
 	if (size <= 0) throw "Invalid value for the table size";
 	srand(time(0));
 	TRecord rec;
-	DataCount = size; 
 	int keyrand, valrand;
+	DataCount = size; 
 
 	std::vector<bool> usedKeys(keyrange, false);
 
@@ -133,7 +133,7 @@ void TListHash::fillTab(int size, int keyrange)
 
 void TListHash::printTab(std::string filename)
 {
-	std::ofstream file(filename + ".txt");
+	std::ofstream file("saved-tables/" + filename + ".txt");
 	file << "Table printing" << std::endl;
 	for (reset(); !isTabEnd(); goNext())
 	{

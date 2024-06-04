@@ -1,0 +1,11 @@
+Table printing
+Key: 0 Val: 912
+Key: 41 Val: 300
+Key: 42 Val: 347
+Key: 54 Val: 131
+Key: 66 Val: 271
+Key: 75 Val: 442
+Key: 76 Val: 297
+Key: 79 Val: 538
+Key: 81 Val: -276
+Key: 93 Val: 784

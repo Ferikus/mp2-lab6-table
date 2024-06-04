@@ -44,7 +44,7 @@ public:
 	virtual void fillTab(int size, int keyrange) = 0;
 	virtual void printTab(std::string filename)
 	{
-		std::ofstream file(filename + ".txt");
+		std::ofstream file("saved-tables/" + filename + ".txt");
 		file << "Table printing" << std::endl;
 		for (reset(); !isTabEnd(); goNext())
 		{
@@ -53,11 +53,5 @@ public:
 		}
 		file.close();
 	}
-	virtual void clrTab()
-	{
-		for (reset(); !isTabEnd(); goNext())
-		{
-			delRec(getRec().key);
-		}
-	}
+	virtual void clrTab() = 0;
 };

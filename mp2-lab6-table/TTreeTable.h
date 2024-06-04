@@ -212,7 +212,7 @@ void TTreeTable::printTreeTab(std::ofstream& file, TTreeNode* pNode, int level)
 	if (pNode != NULL)
 	{
 		for (int i = 0; i < level; i++)
-			file << " ";
+			file << "  ";
 		file << pNode->rec.key << std::endl;
 		printTreeTab(file, pNode->pRight, level + 1);
 		printTreeTab(file, pNode->pLeft, level + 1);
@@ -221,7 +221,7 @@ void TTreeTable::printTreeTab(std::ofstream& file, TTreeNode* pNode, int level)
 
 void TTreeTable::printTab(std::string filename)
 {
-	std::ofstream file(filename + ".txt");
+	std::ofstream file("saved-tables/" + filename + ".txt");
 	printTreeTab(file, pRoot, 0);
 	file.close();
 }
@@ -246,9 +246,20 @@ void TTreeTable::fillTab(int size, int keyrange)
 	if (size <= 0) throw "Invalid value for the table size";
 	srand(time(0));
 	TRecord rec;
+	int keyrand, valrand;
 	DataCount = size;
+
+	std::vector<bool> usedKeys(keyrange, false);
+
 	for (int i = 0; i < size; i++) {
-		rec = TRecord(rand() % keyrange, rand() % (-1999) - 1000);
+		do {
+			keyrand = rand() % keyrange;
+		} while (usedKeys[keyrand]);
+
+		usedKeys[keyrand] = true;
+
+		valrand = rand() % (-1999) - 1000;
+		rec = TRecord(keyrand, valrand);
 		insRec(rec);
 	}
 }

@@ -8,7 +8,7 @@
 TScanTable scantab;
 TSortTable sorttab;
 TArrayHash arrhashtab;
-TListHash listhashtab;
+TListHash listhashtab(500);
 TTreeTable treetab;
 TAVLTree avltreetab;
 
@@ -27,7 +27,6 @@ namespace Forma1 {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 		Graphics^ gr;
-		// поля класса
 		int NumRec; // число записей
 		int KeyRange; // диапазон ключей
 
@@ -49,13 +48,6 @@ namespace Forma1 {
 			//
 
 			gr = CreateGraphics();
-
-			int flag_scan = 0;
-			int flag_sort = 0;
-			int flag_ar_hash = 0;
-			int flag_l_hash = 0;
-			int flag_tree = 0;
-			int flag_avl = 0;
 
 		}
 
@@ -711,46 +703,46 @@ private: System::Void buttonIns_Click(System::Object^ sender, System::EventArgs^
 	}
 	textBoxEff->Text = gcnew String(effstr.c_str());
 }
-private: System::Void buttonExit_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Close();
-}
+
+// RENEW
 private: System::Void buttonRenew_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (radioButtonScanTab->Checked) {
+	if (radioButtonScanTab->Checked)
+	{
 		scantab.clrTab();
 		scantab.clrEff();
 	}
 	if (radioButtonSortTab->Checked)
 	{
-		TSortTable sorttab_new;
-		sorttab = sorttab_new;
+		sorttab.clrTab();
 		sorttab.clrEff();
 	}
 	if (radioButtonHashArr->Checked)
 	{
-		TArrayHash arrhashtab_new;
-		arrhashtab = arrhashtab_new;
+		arrhashtab.clrTab();
 		arrhashtab.clrEff();
 	}
 	if (radioButtonHashList->Checked)
 	{
-		TListHash listhashtab_new;
-		listhashtab = listhashtab_new;
+		listhashtab.clrTab();
 		listhashtab.clrEff();
 	}
 	if (radioButtonTreeTab->Checked)
 	{
-		TTreeTable treetab_new;
-		treetab = treetab_new;
+		treetab.clrTab();
 		treetab.clrEff();
 	}
 	if (radioButtonAVLTab->Checked)
 	{
-		TAVLTree avltreetab_new;
-		avltreetab = avltreetab_new;
+		avltreetab.clrTab();
 		avltreetab.clrEff();
 	}
 	std::string str = "Table was successfully renewed";
 	labelOpStatus->Text = gcnew String(str.c_str());
+}
+
+// EXIT
+private: System::Void buttonExit_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
 }
 };
 }

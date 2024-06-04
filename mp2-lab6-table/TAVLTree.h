@@ -1,6 +1,5 @@
 #pragma once
 #include "TTreeTable.h";
-#include <vector>
 
 #define H_OK      0
 #define H_INC	  1
@@ -26,12 +25,60 @@ public:
 
 
 
+//int TAVLTree::LeftBalance(TTreeNode*& pNode)
+//{
+//	eff++;
+//	int res = H_OK;
+//	switch (pNode->bal)
+//	{
+//	case BalRight:
+//	{
+//		pNode->bal = BalOK;
+//		res = H_OK;
+//	} break;
+//	case BalOK:
+//	{
+//		pNode->bal = BalLeft;
+//		res = H_INC;
+//	} break;
+//	case BalLeft:
+//	{
+//		TTreeNode* p1, * p2;
+//		p1 = pNode->pLeft;
+//		if (p1->bal == BalLeft) {
+//			pNode->pLeft = p1->pRight;
+//			p1->pRight = pNode;
+//			pNode->bal = BalOK;
+//			pNode = p1;
+//			pNode->bal = BalOK;
+//		}
+//		else {
+//			p2 = p1->pRight;
+//			p1->pRight = p2->pLeft;
+//			pNode->pLeft = p2->pRight;
+//			p2->pLeft = p1;
+//			p2->pRight = pNode;
+//			if (p2->bal == BalRight) {
+//				p1->bal = BalLeft;
+//				pNode->bal = BalOK;
+//			}
+//			else {
+//				p1->bal = BalOK;
+//				pNode->bal = BalRight;
+//			}
+//			pNode = p2;
+//			pNode->bal = BalOK;
+//		}
+//	} break;
+//	}
+//	return res;
+//}
+
 int TAVLTree::LeftBalance(TTreeNode*& pNode)
 {
 	eff++;
 	int res = H_OK;
-	switch (pNode->bal)
-	{
+	switch (pNode->bal) {
 	case BalRight:
 	{
 		pNode->bal = BalOK;
@@ -44,35 +91,47 @@ int TAVLTree::LeftBalance(TTreeNode*& pNode)
 	} break;
 	case BalLeft:
 	{
-		TTreeNode* p1, *p2;
+		TTreeNode* p1, * p2;
 		p1 = pNode->pLeft;
 		if (p1->bal == BalLeft) {
-			pNode->pLeft = p1->pRight;
+			if (p1->pRight != NULL)
+				pNode->pLeft = p1->pRight;
+			else
+				pNode->pLeft = NULL; // ÍÀÄÎ ÎÒÂßÇÀÒÜ
 			p1->pRight = pNode;
 			pNode->bal = BalOK;
 			pNode = p1;
-			pNode->bal = BalOK;
 		}
-		else {
+		else if (p1->bal == BalRight) {
 			p2 = p1->pRight;
-			p1->pRight = p2->pLeft; // p2 áûëî nullptr
-			pNode->pLeft = p2->pRight;
-			p2->pLeft = p1;
-			p2->pRight = pNode;
-			if (p2->bal == BalRight) {
-				p1->bal = BalLeft;
-				pNode->bal = BalOK;
-			}
-			else {
+			if (p2->bal == BalLeft) {
+				p1->pRight = p2->pLeft;
+				if (p2->pRight != NULL)
+					pNode->pLeft = p2->pRight;
+				else
+					pNode->pLeft = NULL; // ÍÀÄÎ ÎÒÂßÇÀÒÜ
+				p2->pLeft = p1;
+				p2->pRight = pNode;
+				// balance
 				p1->bal = BalOK;
 				pNode->bal = BalRight;
 			}
+			else { // else if (p2->bal == BalRight) {
+				if (p2->pLeft == NULL)
+					p1->pRight = p2->pLeft;
+				else
+					p1->pRight = NULL; // ÍÀÄÎ ÎÒÂßÇÀÒÜ
+				pNode->pLeft = p2->pRight;
+				p2->pLeft = p1;
+				p2->pRight = pNode;
+				// balance
+				p1->bal = BalLeft;
+				pNode->bal = BalOK;
+			}
 			pNode = p2;
-			pNode->bal = BalOK;
-			res = H_OK;
 		}
+		pNode->bal = BalOK;
 	} break;
-	default: break;
 	}
 	return res;
 }
@@ -81,8 +140,7 @@ int TAVLTree::RightBalance(TTreeNode*& pNode)
 {
 	eff++;
 	int res = H_OK;
-	switch (pNode->bal)
-	{
+	switch (pNode->bal) {
 	case BalLeft:
 	{
 		pNode->bal = BalOK;
@@ -95,35 +153,47 @@ int TAVLTree::RightBalance(TTreeNode*& pNode)
 	} break;
 	case BalRight:
 	{
-		TTreeNode* p1, *p2;
+		TTreeNode* p1, * p2;
 		p1 = pNode->pRight;
 		if (p1->bal == BalRight) {
-			pNode->pRight = p1->pLeft;
+			if (p1->pLeft != NULL)
+				pNode->pRight = p1->pLeft;
+			else
+				pNode->pRight = NULL; // ÍÀÄÎ ÎÒÂßÇÀÒÜ
 			p1->pLeft = pNode;
 			pNode->bal = BalOK;
 			pNode = p1;
-			pNode->bal = BalOK;
 		}
-		else {
+		else if (p1->bal == BalLeft) { //
 			p2 = p1->pLeft;
-			p1->pLeft = p2->pRight; // p2 áûëî nullptr
-			pNode->pRight = p2->pLeft;
-			p2->pRight = p1;
-			p2->pLeft = pNode;
-			if (p2->bal == BalLeft) {
-				p1->bal = BalRight;
-				pNode->bal = BalOK;
-			}
-			else {
+			if (p2->bal == BalRight) {
+				p1->pLeft = p2->pRight;
+				if (p2->pLeft != NULL)
+					pNode->pRight = p2->pLeft;
+				else
+					pNode->pRight = NULL; // ÍÀÄÎ ÎÒÂßÇÀÒÜ
+				p2->pRight = p1;
+				p2->pLeft = pNode;
+				// balance
 				p1->bal = BalOK;
 				pNode->bal = BalLeft;
 			}
+			else { // else if (p2->bal == BalLeft) {
+				if (p2->pRight == NULL)
+					p1->pLeft = p2->pRight;
+				else
+					p1->pLeft = NULL; // ÍÀÄÎ ÎÒÂßÇÀÒÜ
+				pNode->pRight = p2->pLeft;
+				p2->pRight = p1;
+				p2->pLeft = pNode;
+				// balance
+				p1->bal = BalRight;
+				pNode->bal = BalOK;
+			}
 			pNode = p2;
-			pNode->bal = BalOK;
-			res = H_OK;
 		}
+		pNode->bal = BalOK;
 	} break;
-	default: break;
 	}
 	return res;
 }
@@ -186,7 +256,7 @@ int TAVLTree::delBal(TTreeNode*& pNode, TKey key)
 			res = H_DEC;
 		}
 		else {
-			TTreeNode* l, *r;
+			TTreeNode* l, * r;
 			l = pNode->pLeft;
 			r = pNode->pRight;
 			TTreeNode* min = FindMin(r);
@@ -220,10 +290,10 @@ int TAVLTree::RemoveMin(TTreeNode*& pNode)
 
 TTreeNode* TAVLTree::FindMin(TTreeNode* pNode)
 {
-	if (pNode == NULL) return NULL; // äåðåâî ïóñòîå
+	if (pNode == NULL) return NULL; 
 	while (pNode->pLeft != NULL)
-		pNode = pNode->pLeft; // èä¸ì âëåâî, ïîêà íå äîéäåì äî êîíöà
-	return pNode; // óçåë ñ ìèíèìàëüíûì êëþ÷îì
+		pNode = pNode->pLeft;
+	return pNode;
 }
 
 int TAVLTree::delRec(TKey key)
@@ -242,21 +312,6 @@ int TAVLTree::insRec(TRecord rec)
 	return TabOK;
 }
 
-//void TAVLTree::fillTab(int size)
-//{
-//	if (size <= 0) throw "Invalid value for the table size";
-//	srand(time(0));
-//	TRecord rec;
-//	int keyrand, valrand;
-//	DataCount = size;
-//	for (int i = 0; i < size; i++) {
-//		keyrand = rand() % 100;
-//		valrand = rand() % (-1999) - 1000;
-//		rec = TRecord(keyrand, valrand);
-//		insRec(rec);
-//	}
-//}
-
 void TAVLTree::fillTab(int size, int keyrange)
 {
 	if (size <= 0) throw "Invalid value for the table size";
@@ -265,15 +320,14 @@ void TAVLTree::fillTab(int size, int keyrange)
 	int keyrand, valrand;
 	DataCount = size;
 
-	// Ìàññèâ äëÿ õðàíåíèÿ óæå ñãåíåðèðîâàííûõ êëþ÷åé
 	std::vector<bool> usedKeys(keyrange, false);
 
 	for (int i = 0; i < size; i++) {
 		do {
 			keyrand = rand() % keyrange;
-		} while (usedKeys[keyrand]); // Ãåíåðèðóåì íîâûé êëþ÷, ïîêà îí íå áóäåò óíèêàëüíûì
+		} while (usedKeys[keyrand]);
 
-		usedKeys[keyrand] = true; // Îòìå÷àåì êëþ÷ êàê èñïîëüçîâàííûé
+		usedKeys[keyrand] = true;
 
 		valrand = rand() % (-1999) - 1000;
 		rec = TRecord(keyrand, valrand);

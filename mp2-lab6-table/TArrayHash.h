@@ -128,15 +128,28 @@ void TArrayHash::fillTab(int size, int keyrange)
 {
 	if (size <= 0 || size > MaxSize) throw "Invalid value for the table size";
 	srand(time(0));
-	for (int i = 0; i < size; i++) {
-		insRec(TRecord(rand() % keyrange, rand() % (-1999) - 1000));
-	}
+	TRecord rec;
+	int keyrand, valrand;
 	DataCount = size;
+
+	std::vector<bool> usedKeys(keyrange, false);
+
+	for (int i = 0; i < size; i++) {
+		do {
+			keyrand = rand() % keyrange;
+		} while (usedKeys[keyrand]);
+
+		usedKeys[keyrand] = true;
+
+		valrand = rand() % (-1999) - 1000;
+		rec = TRecord(keyrand, valrand);
+		insRec(rec);
+	}
 }
 
 void TArrayHash::printTab(std::string filename)
 {
-	std::ofstream file(filename + ".txt");
+	std::ofstream file("saved-tables/" + filename + ".txt");
 	file << "Table printing" << std::endl;
 	for (reset(); !isTabEnd(); goNext())
 	{
@@ -148,8 +161,7 @@ void TArrayHash::printTab(std::string filename)
 
 void TArrayHash::clrTab()
 {
-	for (reset(); !isTabEnd(); goNext())
-	{
+    while (!isEmpty()) {
 		delRec(getRec().key);
 	}
 }
