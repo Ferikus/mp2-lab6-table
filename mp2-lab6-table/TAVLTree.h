@@ -25,6 +25,7 @@ public:
 
 int TAVLTree::LeftBalance(TTreeNode*& pNode)
 {
+	eff++;
 	int res = H_OK;
 
 	switch (pNode->bal)
@@ -77,6 +78,7 @@ int TAVLTree::LeftBalance(TTreeNode*& pNode)
 
 int TAVLTree::RightBalance(TTreeNode*& pNode)
 {
+	eff++;
 	int res = H_OK;
 
 	switch (pNode->bal)
@@ -149,9 +151,9 @@ int TAVLTree::insBal(TTreeNode*& pNode, TRecord rec)
 
 int TAVLTree::delBal(TTreeNode*& pNode, TKey key)
 {
-	int res;
-	if (pNode == NULL) return H_OK;
 	eff++;
+	int res = H_OK;
+	if (pNode == NULL) return res;
 	if (pNode->rec.key > key)
 	{
 		res = delBal(pNode->pLeft, key);
@@ -264,7 +266,7 @@ void TAVLTree::fillTab(int size, int keyrange)
 	srand(time(0));
 	TRecord rec;
 	int keyrand, valrand;
-	DataCount = size;
+	DataCount = 0;
 
 	std::vector<bool> usedKeys(keyrange, false);
 

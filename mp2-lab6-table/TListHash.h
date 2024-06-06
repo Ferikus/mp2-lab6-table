@@ -50,11 +50,15 @@ void TListHash::reset()
 {
 	CurrList = 0;
 	pCurr = pList[CurrList].begin();
-	while (pCurr == pList[CurrList].end() && CurrList < MaxSize) {
+	while (pCurr == pList[CurrList].end()) {
 		// pCurr == pList[CurrList].end() значит, что текущий список пустой
 		// pList[CurrList].end() указывает на следующий элемент после последнего, это аналог nullptr
 		CurrList++;
-		pCurr = pList[CurrList].begin();
+		if (CurrList < MaxSize) {
+			pCurr = pList[CurrList].begin();
+		}
+		else
+			break;
 	}
 }
 
@@ -83,8 +87,8 @@ bool TListHash::findRec(TKey key)
 {
 	CurrList = HashFunc(key);
 	for (pCurr = pList[CurrList].begin(); pCurr != pList[CurrList].end(); pCurr++) {
-		if (key == pCurr->key) return true;
 		eff++;
+		if (key == pCurr->key) return true;
 	}
 	return false;
 }
@@ -113,7 +117,7 @@ void TListHash::fillTab(int size, int keyrange)
 	srand(time(0));
 	TRecord rec;
 	int keyrand, valrand;
-	DataCount = size; 
+	DataCount = 0; 
 
 	std::vector<bool> usedKeys(keyrange, false);
 
@@ -149,8 +153,15 @@ void TListHash::printTab(std::string filename)
 
 void TListHash::clrTab()
 {
-	for (reset(); !isTabEnd(); goNext())
+	/*for (reset(); !isTabEnd(); goNext())
 	{
 		pList[CurrList].erase(pList[CurrList].begin(), pList[CurrList].end());
+	}*/
+	for (int i = 0; i < MaxSize; i++) {
+		pList[i].clear(); // очищаем каждый список в массиве
 	}
+	delete[] pList; // освобождаем память, занятую массивом списков
+	pList = nullptr;
+	pList = new std::list<TRecord>[MaxSize];
+	DataCount = 0;
 }

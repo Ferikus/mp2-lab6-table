@@ -34,6 +34,14 @@ TEST(TreeTable, CHECK_PRINTED_TAB)
 	EXPECT_NO_THROW(tab.printTab("treetable"));
 }
 
+TEST(TreeTable, CLEAR_TAB_IS_COREECT)
+{
+	TTreeTable tab;
+	tab.fillTab(3, 100);
+	EXPECT_NO_THROW(tab.clrTab());
+	EXPECT_TRUE(tab.isEmpty());
+	EXPECT_NO_THROW(tab.printTab("treetable_CLEAR"));
+}
 
 /* -------------------------- реярш дкъ TAVLTree (AVL-яаюкюмяхпнбюммше депебэъ) -------------------------- */
 
@@ -66,4 +74,13 @@ TEST(AVLTree, CHECK_PRINTED_TAB)
 	TAVLTree tab;
 	tab.fillTab(50, 50);
 	EXPECT_NO_THROW(tab.printTab("avltreetable"));
+}
+
+TEST(AVLTree, CLEAR_TAB_IS_COREECT)
+{
+	TAVLTree tab;
+	tab.fillTab(3, 100);
+	EXPECT_NO_THROW(tab.clrTab());
+	EXPECT_TRUE(tab.isEmpty());
+	EXPECT_NO_THROW(tab.printTab("avltable_CLEAR"));
 }

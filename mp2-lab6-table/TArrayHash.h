@@ -47,7 +47,7 @@ TArrayHash::TArrayHash(int size)
 	Empty = TRecord(-3, 0);
 	for (int i = 0; i < MaxSize; i++)
 		pRecs[i] = Empty;
-	HashStep = 1;
+	HashStep = 3;
 }
 
 TArrayHash::~TArrayHash()
@@ -96,7 +96,6 @@ bool TArrayHash::findRec(TKey key)
 		if (pRecs[Curr] == Empty)
 			return false;
 		Curr = (Curr + HashStep) % MaxSize;
-		eff++;
 	}
 	return false;
 }
@@ -131,7 +130,7 @@ void TArrayHash::fillTab(int size, int keyrange)
 	srand(time(0));
 	TRecord rec;
 	int keyrand, valrand;
-	DataCount = size;
+	DataCount = 0;
 
 	std::vector<bool> usedKeys(keyrange, false);
 
@@ -162,7 +161,12 @@ void TArrayHash::printTab(std::string filename)
 
 void TArrayHash::clrTab()
 {
-	for (reset(); !isTabEnd(); goNext()) {
-		delRec(getRec().key);
-	}
+	//for (reset(); !isTabEnd(); goNext()) {
+	//	delRec(getRec().key);
+	//}
+	delete[] pRecs;
+	pRecs = new TRecord[MaxSize];
+	for (int i = 0; i < MaxSize; i++)
+		pRecs[i] = Empty;
+	DataCount = 0;
 }

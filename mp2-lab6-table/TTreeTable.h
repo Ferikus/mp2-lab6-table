@@ -61,7 +61,7 @@ public:
 	// служебные методы
 	virtual void fillTab(int size, int keyrange);
 	virtual void printTab(std::string filename) final;
-	virtual void clrTab() final { deleteTreeTab(pRoot); }
+	virtual void clrTab() final;
 };
 
 
@@ -71,13 +71,15 @@ bool TTreeTable::findRec(TKey key)
 	pCurr = pRoot;
 	pPr = NULL;
 	while (pCurr != NULL) {
+		eff++;
 		if (pCurr->rec.key == key) break;
 		else {
 			pPr = pCurr;
-			if (pCurr->rec.key > key) pCurr = pCurr->pLeft;
-			else pCurr = pCurr->pRight;
+			if (pCurr->rec.key > key)
+				pCurr = pCurr->pLeft;
+			else
+				pCurr = pCurr->pRight;
 		}
-		eff++;
 	}
 	if (pCurr != NULL) return true;
 	else {
@@ -107,24 +109,6 @@ int TTreeTable::delRec(TKey key)
 	bool res = findRec(key);
 	if (!res) return TabNoRec;
 	else {
-		//TTreeNode* pDel;
-		//if (pPr == NULL) pRoot = pCurr->pLeft; 
-		//else {
-		//	if (pCurr->pRight == NULL) {
-		//		pDel = pCurr;
-		//		if (pPr->rec.key > pCurr->rec.key) // левая ветка
-		//			pPr->pLeft = pCurr->pLeft;
-		//		else pPr->pRight == pCurr->pRight; // правая ветка
-		//	}
-		//	else if (pCurr->pLeft == NULL) {
-		//		pDel = pCurr;
-		//		if (pPr->rec.key > pCurr->rec.key) // левая ветка
-		//			pPr->pRight = pCurr->pRight;
-		//		else pPr->pLeft == pCurr->pLeft; // правая ветка
-		//	}
-		//}
-		//delete pDel;
-
 		TTreeNode* pDel = NULL;
 		if (pCurr->pRight == NULL)
 		{
@@ -233,6 +217,7 @@ void TTreeTable::deleteTreeTab(TTreeNode* pNode)
 		deleteTreeTab(pNode->pLeft);
 		deleteTreeTab(pNode->pRight);
 		delete pNode;
+		DataCount--;
 	}
 }
 
@@ -247,7 +232,7 @@ void TTreeTable::fillTab(int size, int keyrange)
 	srand(time(0));
 	TRecord rec;
 	int keyrand, valrand;
-	DataCount = size;
+	DataCount = 0;
 
 	std::vector<bool> usedKeys(keyrange, false);
 
@@ -262,4 +247,10 @@ void TTreeTable::fillTab(int size, int keyrange)
 		rec = TRecord(keyrand, valrand);
 		insRec(rec);
 	}
+}
+
+void TTreeTable::clrTab()
+{
+	deleteTreeTab(pRoot);
+	pRoot = NULL;
 }

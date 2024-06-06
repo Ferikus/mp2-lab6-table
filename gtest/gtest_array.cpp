@@ -67,6 +67,15 @@ TEST(ScanTable, CHECK_PRINTED_TAB)
 	EXPECT_NO_THROW(tab.printTab("scantable"));
 }
 
+TEST(ScanTable, CLEAR_TAB_IS_COREECT)
+{
+	TScanTable tab;
+	tab.fillTab(3, 100);
+	EXPECT_NO_THROW(tab.clrTab());
+	EXPECT_TRUE(tab.isEmpty());
+	EXPECT_NO_THROW(tab.printTab("scantable_CLEAR"));
+}
+
 /* -------------------------- “≈—“€ ƒÀﬂ TSortTable (”œŒ–ﬂƒŒ◊≈ÕÕ€≈ “¿¡À»÷€) -------------------------- */
 
 TEST(SortTable, CAN_CREATE_TABLE)
@@ -158,4 +167,13 @@ TEST(SortTable, CHECK_PRINTED_TAB)
 	TSortTable tab_merge(10, merge);
 	tab_merge.fillTab(3, 100);
 	EXPECT_NO_THROW(tab_merge.printTab("sorttable_merge"));
+}
+
+TEST(SortTable, CLEAR_TAB_IS_COREECT)
+{
+	TSortTable tab;
+	tab.fillTab(3, 100);
+	EXPECT_NO_THROW(tab.clrTab());
+	EXPECT_TRUE(tab.isEmpty());
+	EXPECT_NO_THROW(tab.printTab("sorttable_CLEAR"));
 }

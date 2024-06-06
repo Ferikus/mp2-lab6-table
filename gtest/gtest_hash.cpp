@@ -45,6 +45,15 @@ TEST(ArrayHash, CHECK_PRINTED_TAB)
 	EXPECT_NO_THROW(tab.printTab("arrayhashtable"));
 }
 
+TEST(ArrayHash, CLEAR_TAB_IS_COREECT)
+{
+	TArrayHash tab;
+	tab.fillTab(3, 100);
+	EXPECT_NO_THROW(tab.clrTab());
+	EXPECT_TRUE(tab.isEmpty());
+	EXPECT_NO_THROW(tab.printTab("arrayhashtable_CLEAR"));
+}
+
 /* -------------------------- “≈—“€ ƒÀﬂ TListHash (’›ÿ-“¿¡À»÷€ Õ¿ —œ»— ¿’) -------------------------- */
 
 TEST(ListHash, CAN_CREATE_TABLE)
@@ -78,4 +87,13 @@ TEST(ListHash, CHECK_PRINTED_TAB)
 	TListHash tab(5);
 	tab.fillTab(50, 100);
 	EXPECT_NO_THROW(tab.printTab("listhashtable"));
+}
+
+TEST(ListHash, CLEAR_TAB_IS_COREECT)
+{
+	TListHash tab(5);
+	tab.fillTab(3, 100);
+	EXPECT_NO_THROW(tab.clrTab());
+	EXPECT_TRUE(tab.isEmpty());
+	EXPECT_NO_THROW(tab.printTab("listhashtable_CLEAR"));
 }

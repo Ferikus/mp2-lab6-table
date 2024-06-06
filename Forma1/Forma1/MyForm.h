@@ -7,7 +7,7 @@
 
 TScanTable scantab;
 TSortTable sorttab;
-TArrayHash arrhashtab;
+TArrayHash arrhashtab(500);
 TListHash listhashtab(500);
 TTreeTable treetab;
 TAVLTree avltreetab;
@@ -495,6 +495,7 @@ private: System::Void buttonCreate_Click(System::Object^ sender, System::EventAr
 
 // SAVE
 private: System::Void buttonSave_Click(System::Object^ sender, System::EventArgs^ e) {
+
 	if (radioButtonScanTab->Checked)
 	{
 		scantab.printTab("scantab");
