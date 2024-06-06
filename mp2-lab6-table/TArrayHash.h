@@ -88,6 +88,7 @@ bool TArrayHash::findRec(TKey key)
 	Free = -1;
 	Curr = HashFunc(key);
 	for (int i = 0; i < MaxSize; i++) {
+		eff++;
 		if (pRecs[Curr].key == key)
 			return true;
 		if (pRecs[Curr] == Del && Free == -1)
@@ -161,7 +162,7 @@ void TArrayHash::printTab(std::string filename)
 
 void TArrayHash::clrTab()
 {
-    while (!isEmpty()) {
+	for (reset(); !isTabEnd(); goNext()) {
 		delRec(getRec().key);
 	}
 }

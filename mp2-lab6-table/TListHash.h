@@ -1,6 +1,5 @@
 #pragma once
 #include "THashTable.h"
-#include <list>
 
 class TListHash : public THashTable
 {
@@ -30,7 +29,7 @@ public:
 	// заполнение и печать
 	virtual void fillTab(int size, int keyrange);
 	virtual void printTab(std::string filename);
-	void clrTab();
+	virtual void clrTab();
 };
 
 
@@ -152,8 +151,6 @@ void TListHash::clrTab()
 {
 	for (reset(); !isTabEnd(); goNext())
 	{
-		for (; pCurr != pList[CurrList].end(); pCurr++) {
-			delRec(getRec().key);
-		}
+		pList[CurrList].erase(pList[CurrList].begin(), pList[CurrList].end());
 	}
 }

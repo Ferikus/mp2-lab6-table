@@ -206,8 +206,8 @@ void TSortTable::fillTab(int size, int keyrange)
 
 void TSortTable::clrTab()
 {
-	for (reset(); !isTabEnd(); goNext())
-	{
+	while (!isEmpty()) {
+		CurrPos = 0;
 		delRec(getRec().key);
 	}
 }
